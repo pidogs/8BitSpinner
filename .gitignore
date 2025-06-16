@@ -1,0 +1,6 @@
+.vscode
+.vscode/*
+__pycache__
+*.pyc
+combined.md
+shell.nix
