@@ -4,10 +4,11 @@ I was watching The 8-Bit Drummer's stream on June 14th, 2024, when he mentioned 
 
 ## Live Demo
 
-A live demo of the spinner is hosted on GitHub Pages for you to try out instantly: [Try 8Bit Song Spinner here]()
-
 > [!CAUTION]
 > This live demo **DOES NOT** pull live song data from `the8bitdrummer.com`.
+
+A live demo of the spinner is hosted on GitHub Pages for you to try out instantly: [Try 8Bit Song Spinner here](https://pidogs.github.io/8BitSpinner/)
+
 
 **Why?**
 - For security reasons, web browsers prevent scripts on one website (like GitHub Pages) from fetching data directly from another website. This is known as the Cross-Origin Resource Sharing (CORS) policy.

@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   // --- Configuration ---
-  const API_URL = '/json/song_list.php';  // IMPORTANT: This is your data source
+  const API_URL = 'json/song_list.php';  // IMPORTANT: This is your data source
   const SPIN_DURATION_SECONDS = 6;        // How long the spin animation lasts
 
   // --- DOM Elements ---
