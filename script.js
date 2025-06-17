@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   // --- Configuration ---
   const API_URL = 'json/song_list.php';  // IMPORTANT: This is your data source
-  const SPIN_DURATION_SECONDS = 6;        // How long the spin animation lasts
+  const SPIN_DURATION_SECONDS = 6;       // How long the spin animation lasts
 
   // --- DOM Elements ---
   const spinButton = document.getElementById('spin-button');
@@ -56,10 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const isCustomServer = response.headers.get('Custom-Server') || false;
       if (!isCustomServer) {
         console.warn('This is not a custom server response.');
-        const notLiveBanner = document.createElement('div');
-        notLiveBanner.textContent = 'TEST ENVIRONMENT - NOT FOR LIVE USE';
-        notLiveBanner.classList.add('test-environment-banner');
-        document.body.appendChild(notLiveBanner);
+        let notLiveBanner = document.querySelector('.test-environment-banner');
+
+        // If it doesn't exist, create it
+        if (!notLiveBanner) {
+          const notLiveBanner = document.createElement('div');
+          notLiveBanner.textContent =
+              'DEMO ENVIRONMENT - NOT PULLING LIVE SONG DATA';
+          notLiveBanner.classList.add('test-environment-banner');
+          document.body.appendChild(notLiveBanner);
+        }
       }
       const data = await response.json();
       songs = data.data.filter(item => item.played === '0');
@@ -146,7 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const duration = SPIN_DURATION_SECONDS * 1000;
     const startTime = performance.now();
     // Adjust the easing function based on the number of songs
-    const slowDownFactor = Math.min(songs.length / 20, 0.8);  // Adjust divisor to taste
+    const slowDownFactor =
+        Math.min(songs.length / 20, 0.8);  // Adjust divisor to taste
     const ease = cubicBezier(0.2, 0.8 + slowDownFactor / 4, 0.2, 1);
     const loopHeight = songs.length * itemHeight;
 
@@ -154,7 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3) We target the winner in the *second* copy of the list for a seamless
     // wrap.
     const targetY = -((winnerIndex + songs.length - 3) * itemHeight);
-    const numberOfLoops = Math.max(200,2 * songs.length); // 200 songs to loop over 
+    const numberOfLoops =
+        Math.max(200, 2 * songs.length);  // 200 songs to loop over
     console.log(numberOfLoops)
     const finalDestinationY = targetY - (numberOfLoops * itemHeight);
     const totalDistance = startY - finalDestinationY;
@@ -269,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const colorElement = document.getElementById('color');
   colorElement.textContent = bgColor;
   colorElement.addEventListener('mouseover', () => {
-    colorElement.textContent = "Click to copy: "+bgColor;
+    colorElement.textContent = 'Click to copy: ' + bgColor;
   });
   colorElement.addEventListener('mouseout', () => {
     colorElement.textContent = bgColor;

@@ -30,7 +30,7 @@ class MyHandler(SimpleHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=MyHandler, port=8000):
   server_address = ('', port) # set port
   httpd = server_class(server_address, handler_class) # get server class
-  print(f'Starting server on port {port}') 
+  print(f'Starting server http://localhost:{port}') 
   httpd.serve_forever() # start server
 
 if __name__ == "__main__":
